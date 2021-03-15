@@ -92,30 +92,19 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const files = core.getInput('files', { required: true });
-            const failure = (core.getInput('allow_failure') || 'false').toUpperCase() === 'TRUE';
             const fileList = files
                 .split(',')
                 .map((item) => item.trim());
-            const missingFiles = [];
+            const foundFiles = [];
             // Check in parallel
             yield Promise.all(fileList.map((file) => __awaiter(this, void 0, void 0, function* () {
                 const isPresent = yield checkExistence(file);
-                if (!isPresent) {
-                    missingFiles.push(file);
+                if (isPresent) {
+                    foundFiles.push(file);
                 }
             })));
-            if (missingFiles.length > 0) {
-                if (failure) {
-                    core.setFailed(`These files doesn't exist: ${missingFiles.join(', ')}`);
-                }
-                else {
-                    core.info(`These files doesn't exist: ${missingFiles.join(', ')}`);
-                }
-                core.setOutput('files_exists', 'false');
-            }
-            else {
-                core.info('🎉 All files exists');
-                core.setOutput('files_exists', 'true');
+            if (foundFiles.length > 0) {
+                core.setFailed('secret_exists');
             }
         }
         catch (error) {
