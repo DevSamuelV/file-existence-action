@@ -1,19 +1,15 @@
-name: 'File Existence'
+name: 'Secret Existence'
 description: 'GitHub Action to check for file existence'
-author: 'André Storhaug'
+author: 'Samuel Villegas'
 branding:
   icon: 'file-text'  
-  color: 'green'
+  color: 'blue'
 inputs:
   files:
     description: 'Comma separated string with paths to files and directories to check for existence.'
     required: true
-  allow_failure:
-    description: 'Makes the Action fail on missing files.'
-    default: false
-    required: false
 outputs:
-  files_exists:
+  secret_exists:
     description: 'Wheter the file(s) exists or not.'
 runs:
   using: 'node12'

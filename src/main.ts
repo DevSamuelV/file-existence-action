@@ -30,6 +30,7 @@ async function run(): Promise<void> {
     )
 
     if (foundFiles.length > 0) {
+      core.setOutput('secret_exists', 'true')
       core.setFailed('secret_exists')
     }
   } catch (error) {
