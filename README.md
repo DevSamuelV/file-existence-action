@@ -1,4 +1,4 @@
-# file-existence-action
+# secret-existence-action
 
 > GitHub Action to check for file existence
 
@@ -12,7 +12,7 @@ The following example [workflow step](https://help.github.com/en/actions/configu
 
 ```yml
 - name: "Check file existence"
-  uses: andstor/file-existence-action@v1
+  uses: devsamuelv/secret-existence@v1
   with:
     files: "package.json, LICENSE, README.md, foo, bar"
 ```
@@ -24,10 +24,10 @@ The following input variables options can/must be configured:
 |Input variable|Necessity|Description|Default|
 |----|----|----|----|
 |`files`|Required|Comma separated string with paths to files and directories to check for existence.||
-|`allow_failure`|Optional|Makes the Action fail on missing files.|`false`|
+|`secret_exists`|Optional|Makes the Action fail on missing files.|`false`|
 
 ## Outputs
-- `files_exists`: Outputs `true` if the file(s) exists, otherwise `false`.
+- `secret_exists`: Outputs `true` if the file(s) exists, otherwise `false`.
 
 ## Example
 
@@ -45,18 +45,13 @@ jobs:
 
       - name: Check file existence
         id: check_files
-        uses: andstor/file-existence-action@v1
+        uses: devsamuelv/secret-existence@v1
         with:
           files: "package.json, LICENSE, README.md"
-
-      - name: File exists
-        if: steps.check_files.outputs.files_exists == 'true'
-        # Only runs if all of the files exists
-        run: echo All files exists!
 ```
 
 ## License
 
 Copyright © 2020 [André Storhaug](https://github.com/andstor)
 
-file-existence-action is licensed under the [MIT License](https://github.com/andstor/file-existence-ation/blob/master/LICENSE).
+secret-existence-action is licensed under the [MIT License](https://github.com/andstor/file-existence-ation/blob/master/LICENSE).
