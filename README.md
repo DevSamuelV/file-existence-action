@@ -45,7 +45,7 @@ jobs:
 
       - name: Check file existence
         id: check_files
-        uses: devsamuelv/secret-existence@v1
+        uses: devsamuelv/secret-existence@v0.2.1-alpha
         with:
           files: "package.json, LICENSE, README.md"
 ```
